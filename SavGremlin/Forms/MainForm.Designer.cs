@@ -31,10 +31,14 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fIleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearCategoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.savingsCategoryPanel = new System.Windows.Forms.Panel();
+            this.accountsPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,15 +63,41 @@
             // 
             // accountsToolStripMenuItem
             // 
+            this.accountsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newAccountToolStripMenuItem});
             this.accountsToolStripMenuItem.Name = "accountsToolStripMenuItem";
             this.accountsToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.accountsToolStripMenuItem.Text = "Accounts";
             // 
+            // newAccountToolStripMenuItem
+            // 
+            this.newAccountToolStripMenuItem.Name = "newAccountToolStripMenuItem";
+            this.newAccountToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.newAccountToolStripMenuItem.Text = "New Account...";
+            this.newAccountToolStripMenuItem.Click += new System.EventHandler(this.newAccountToolStripMenuItem_Click);
+            // 
             // categoriesToolStripMenuItem
             // 
+            this.categoriesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newCategoryToolStripMenuItem,
+            this.clearCategoriesToolStripMenuItem});
             this.categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
             this.categoriesToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
             this.categoriesToolStripMenuItem.Text = "Categories";
+            // 
+            // newCategoryToolStripMenuItem
+            // 
+            this.newCategoryToolStripMenuItem.Name = "newCategoryToolStripMenuItem";
+            this.newCategoryToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.newCategoryToolStripMenuItem.Text = "New Category...";
+            this.newCategoryToolStripMenuItem.Click += new System.EventHandler(this.newCategoryToolStripMenuItem_Click);
+            // 
+            // clearCategoriesToolStripMenuItem
+            // 
+            this.clearCategoriesToolStripMenuItem.Name = "clearCategoriesToolStripMenuItem";
+            this.clearCategoriesToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.clearCategoriesToolStripMenuItem.Text = "Clear Categories...";
+            this.clearCategoriesToolStripMenuItem.Click += new System.EventHandler(this.clearCategoriesToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -85,20 +115,28 @@
             // 
             // savingsCategoryPanel
             // 
-            this.savingsCategoryPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.savingsCategoryPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.savingsCategoryPanel.AutoScroll = true;
             this.savingsCategoryPanel.Location = new System.Drawing.Point(13, 53);
             this.savingsCategoryPanel.Name = "savingsCategoryPanel";
-            this.savingsCategoryPanel.Size = new System.Drawing.Size(595, 270);
+            this.savingsCategoryPanel.Size = new System.Drawing.Size(595, 250);
             this.savingsCategoryPanel.TabIndex = 2;
+            // 
+            // accountsPanel
+            // 
+            this.accountsPanel.Location = new System.Drawing.Point(13, 309);
+            this.accountsPanel.Name = "accountsPanel";
+            this.accountsPanel.Size = new System.Drawing.Size(595, 206);
+            this.accountsPanel.TabIndex = 3;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(620, 335);
+            this.ClientSize = new System.Drawing.Size(620, 522);
+            this.Controls.Add(this.accountsPanel);
             this.Controls.Add(this.savingsCategoryPanel);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -121,6 +159,10 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.Panel savingsCategoryPanel;
+        private System.Windows.Forms.ToolStripMenuItem newAccountToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newCategoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearCategoriesToolStripMenuItem;
+        private System.Windows.Forms.Panel accountsPanel;
     }
 }
 

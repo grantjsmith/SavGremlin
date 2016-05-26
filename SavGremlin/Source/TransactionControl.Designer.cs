@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.valueLabel = new System.Windows.Forms.Label();
+            this.noteToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // valueLabel
@@ -36,12 +38,16 @@
             this.valueLabel.BackColor = System.Drawing.Color.Silver;
             this.valueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.valueLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.valueLabel.Location = new System.Drawing.Point(3, 0);
+            this.valueLabel.Location = new System.Drawing.Point(0, 0);
             this.valueLabel.Name = "valueLabel";
-            this.valueLabel.Size = new System.Drawing.Size(81, 25);
+            this.valueLabel.Size = new System.Drawing.Size(87, 25);
             this.valueLabel.TabIndex = 0;
             this.valueLabel.Text = "+ 124.23";
             this.valueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // noteToolTip
+            // 
+            this.noteToolTip.ShowAlways = true;
             // 
             // TransactionControl
             // 
@@ -57,5 +63,6 @@
         #endregion
 
         private System.Windows.Forms.Label valueLabel;
+        private System.Windows.Forms.ToolTip noteToolTip;
     }
 }

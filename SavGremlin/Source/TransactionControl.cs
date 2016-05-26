@@ -11,19 +11,24 @@ namespace WindowsFormsApplication1.Source
 {
     public partial class TransactionControl : UserControl
     {
-        private float transactionValue;
+        private double transactionValue;
+        private String note;
 
         public TransactionControl()
         {
             InitializeComponent();
         }
 
-        public TransactionControl(float value)
+        public TransactionControl(double value, String innote)
         {
             InitializeComponent();
 
             transactionValue = value;
+            note = innote;
+        }
 
+        public void refreshViews()
+        {
             if (transactionValue > 0)
             {
                 valueLabel.Text = String.Format("+ {0:C2}", transactionValue);
@@ -34,6 +39,8 @@ namespace WindowsFormsApplication1.Source
                 valueLabel.Text = String.Format("- {0:C2}", Math.Abs(transactionValue));
                 valueLabel.ForeColor = Color.Red;
             }
+
+            noteToolTip.SetToolTip(valueLabel, note);
         }
     }
 }
