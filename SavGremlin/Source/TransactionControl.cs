@@ -11,7 +11,7 @@ namespace WindowsFormsApplication1.Source
 {
     public partial class TransactionControl : UserControl
     {
-        private double transactionValue;
+        private Decimal transactionValue;
         private String note;
 
         public TransactionControl()
@@ -19,7 +19,7 @@ namespace WindowsFormsApplication1.Source
             InitializeComponent();
         }
 
-        public TransactionControl(double value, String innote)
+        public TransactionControl(Decimal value, String innote)
         {
             InitializeComponent();
 

@@ -23,7 +23,7 @@ namespace SavGremlin.Forms
         {
             newTransaction = new Transaction();
 
-            newTransaction.value = Convert.ToDouble(transactionValueBox.Text);
+            newTransaction.value = Convert.ToDecimal(transactionValueBox.Text);
             newTransaction.note = noteBox.Text;
 
             this.DialogResult = DialogResult.OK;

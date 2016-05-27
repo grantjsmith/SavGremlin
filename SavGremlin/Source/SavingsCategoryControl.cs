@@ -59,7 +59,7 @@ namespace WindowsFormsApplication1.Source
             addTransactions(savData.transactions);
 
             // Handle the gradient stuff
-            int gradientindex =  (int) ((savData.currentValue / savData.goal) * 20);
+            int gradientindex =  (int) ((savData.currentValue / savData.goal) * 19);
 
             currentTotalLabel.BackColor = currentValueGradientList[gradientindex];
 

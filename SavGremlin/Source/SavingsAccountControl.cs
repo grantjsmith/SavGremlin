@@ -24,7 +24,7 @@ namespace SavGremlin.Source
             accountValueLabel.Text = data.accountValue.ToString();
         }
 
-        public void addMoney(double ammount)
+        public void addMoney(Decimal ammount)
         {
             data.accountValue += ammount;
 

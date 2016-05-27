@@ -147,17 +147,29 @@ namespace WindowsFormsApplication1
             saveAll();
         }
 
-        public void allocateFunds(double input)
+        public void allocateFunds(Decimal input)
         {
+            // The ammount of money to be deposited during this cycle
+            Decimal total = input;
+            // The ammount of money left over (if any) after this cycle
+            Decimal remainder = input;
+            // Used to store the percentage we will attempt to store in a given account
+            List<Decimal> percentages = new List<Decimal>();
+            // The total percentage we will be allocating during this cycle - if this is not 1, we will adjust percentages until it is
+            Decimal totalPercent = 0;
+            // The number of accounts we will depositing in during this cycle - used to calculate percentage adjustments
+            int activeaccounts = 0;
 
-            List<double> percentages = new List<double>();
-            double totalPercent = 0;
-            double remainder = input;
 
-            // Now, the percentages should add up to exactly 100% - allocate funds according to the corrected numbers.
-            while (remainder != 0)
+            // Continue allocating money until there is no money left to allocate
+            while (total != 0)
             {
-                // First, determine whether the present percentages add up to 100% - if not, we must make additions
+                // Clear values from our previous cycle
+                activeaccounts = 0;
+                totalPercent = 0;
+                percentages.Clear();
+
+                // First, compile the percentages we will be allocating in this cycle, based on the values in the currently displayed savings accounts
                 foreach (Control c in savingsCategoryPanel.Controls)
                 {
                     SavingsCategoryControl tmp = (SavingsCategoryControl)c;
@@ -169,18 +181,23 @@ namespace WindowsFormsApplication1
                     }
                     else
                     {
-                        percentages.Add(tmp.savData.percentageMonthly);
+                        percentages.Add((Decimal)tmp.savData.percentageMonthly);
                         totalPercent += tmp.savData.percentageMonthly;
+
+                        activeaccounts++;
                     }
                 }
 
                 if (totalPercent != 1)
                 {
-                    double addition = (totalPercent - 1) / percentages.Count;
+                    decimal addition = (totalPercent - 1) / activeaccounts;
 
                     for (int i = 0; i < percentages.Count; i++)
                     {
-                        percentages[i] -= addition;
+                        if (percentages[i] != 0)
+                        {
+                            percentages[i] -= addition;
+                        }
                     }
                 }
 
@@ -188,20 +205,23 @@ namespace WindowsFormsApplication1
                 {
                     SavingsCategoryControl c = (SavingsCategoryControl)savingsCategoryPanel.Controls[i];
 
-                    if ((c.savData.currentValue + (input * percentages[i])) >= c.savData.goal)
+                    if ((c.savData.currentValue + (remainder * percentages[i])) >= c.savData.goal)
                     {
                         // Adding the ammount we should add would overshoot the goal - add only what's needed, leave the rest to be allocated next time
                         remainder -= c.savData.goal - c.savData.currentValue;
                         c.savData.currentValue = c.savData.goal;
+                        c.refreshViews();
                     }
                     else
                     {
-                        double addition = input * percentages[i];
+                        Decimal addition = remainder * percentages[i];
                         c.savData.currentValue += addition;
                         remainder -= addition;
                         c.refreshViews();
                     }
                 }
+
+                total = remainder;
             }
         }
     }

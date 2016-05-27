@@ -7,7 +7,7 @@ namespace SavGremlin.Source
 {
     public class Transaction
     {
-        public double value;
+        public Decimal value;
         public String note;
 
         public String collapseToString()
@@ -26,7 +26,7 @@ namespace SavGremlin.Source
 
             String[] components = input.Split(';');
 
-            result.value = Convert.ToDouble(components[0]);
+            result.value = Convert.ToDecimal(components[0]);
             result.note = components[1];
 
             return result;

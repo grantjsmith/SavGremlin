@@ -8,9 +8,9 @@ namespace SavGremlin.Source
     public class SavingsCategory
     {
         public string name;
-        public double percentageMonthly;
+        public Decimal percentageMonthly;
         public int goal;
-        public double currentValue;
+        public Decimal currentValue;
 
         public List<Transaction> transactions;
 
@@ -38,9 +38,9 @@ namespace SavGremlin.Source
             String[] values = input.Split(',');
 
             result.name = values[0];
-            result.percentageMonthly = Convert.ToDouble(values[1]);
+            result.percentageMonthly = Convert.ToDecimal(values[1]);
             result.goal = Convert.ToInt32(values[2]);
-            result.currentValue = Convert.ToDouble(values[3]);
+            result.currentValue = Convert.ToDecimal(values[3]);
 
             String[] transactions = values[4].Split(':');
 

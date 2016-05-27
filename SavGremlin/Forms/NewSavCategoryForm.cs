@@ -25,9 +25,9 @@ namespace SavGremlin.Forms
             newCategory = new SavingsCategory();
 
             newCategory.name = nameBox.Text;
-            newCategory.percentageMonthly = Convert.ToDouble(monthlyPercentageBox.Text) * .01;
+            newCategory.percentageMonthly = Convert.ToDecimal(monthlyPercentageBox.Text) * (Decimal) .01;
             newCategory.goal = Convert.ToInt32(goalBox.Text);
-            newCategory.currentValue = Convert.ToDouble(currentValueBox.Text);
+            newCategory.currentValue = Convert.ToDecimal(currentValueBox.Text);
 
             newCategory.transactions = new List<Transaction>();
 
