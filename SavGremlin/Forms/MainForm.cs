@@ -142,9 +142,67 @@ namespace WindowsFormsApplication1
                 ((SavingsAccountControl)((Button)sender).Parent).addMoney(form.newTransaction.value);
             }
 
+            allocateFunds(form.newTransaction.value);
+
             saveAll();
         }
 
+        public void allocateFunds(double input)
+        {
 
+            List<double> percentages = new List<double>();
+            double totalPercent = 0;
+            double remainder = input;
+
+            // Now, the percentages should add up to exactly 100% - allocate funds according to the corrected numbers.
+            while (remainder != 0)
+            {
+                // First, determine whether the present percentages add up to 100% - if not, we must make additions
+                foreach (Control c in savingsCategoryPanel.Controls)
+                {
+                    SavingsCategoryControl tmp = (SavingsCategoryControl)c;
+
+                    // If we've already met the goal for this category, no need to add further money
+                    if (tmp.savData.goal == tmp.savData.currentValue)
+                    {
+                        percentages.Add(0);
+                    }
+                    else
+                    {
+                        percentages.Add(tmp.savData.percentageMonthly);
+                        totalPercent += tmp.savData.percentageMonthly;
+                    }
+                }
+
+                if (totalPercent != 1)
+                {
+                    double addition = (totalPercent - 1) / percentages.Count;
+
+                    for (int i = 0; i < percentages.Count; i++)
+                    {
+                        percentages[i] -= addition;
+                    }
+                }
+
+                for (int i = 0; i < savingsCategoryPanel.Controls.Count; i++)
+                {
+                    SavingsCategoryControl c = (SavingsCategoryControl)savingsCategoryPanel.Controls[i];
+
+                    if ((c.savData.currentValue + (input * percentages[i])) >= c.savData.goal)
+                    {
+                        // Adding the ammount we should add would overshoot the goal - add only what's needed, leave the rest to be allocated next time
+                        remainder -= c.savData.goal - c.savData.currentValue;
+                        c.savData.currentValue = c.savData.goal;
+                    }
+                    else
+                    {
+                        double addition = input * percentages[i];
+                        c.savData.currentValue += addition;
+                        remainder -= addition;
+                        c.refreshViews();
+                    }
+                }
+            }
+        }
     }
 }
