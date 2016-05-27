@@ -127,7 +127,7 @@ namespace WindowsFormsApplication1
 
             if (form.ShowDialog() == DialogResult.OK)
             {
-                ((SavingsCategoryControl)sender).addTransaction(form.newTransaction);
+                ((SavingsCategoryControl)((Button)sender).Parent).addTransaction(form.newTransaction);
             }
 
             saveAll();
@@ -139,7 +139,7 @@ namespace WindowsFormsApplication1
 
             if (form.ShowDialog() == DialogResult.OK)
             {
-                ((SavingsAccountControl)sender).addMoney(form.newTransaction.value);
+                ((SavingsAccountControl)((Button)sender).Parent).addMoney(form.newTransaction.value);
             }
 
             saveAll();
