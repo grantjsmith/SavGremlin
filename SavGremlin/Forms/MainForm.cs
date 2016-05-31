@@ -205,7 +205,7 @@ namespace WindowsFormsApplication1
                 {
                     SavingsCategoryControl c = (SavingsCategoryControl)savingsCategoryPanel.Controls[i];
 
-                    if ((c.savData.currentValue + (remainder * percentages[i])) >= c.savData.goal)
+                    if ((c.savData.currentValue + (total * percentages[i])) >= c.savData.goal)
                     {
                         // Adding the ammount we should add would overshoot the goal - add only what's needed, leave the rest to be allocated next time
                         remainder -= c.savData.goal - c.savData.currentValue;
@@ -214,7 +214,7 @@ namespace WindowsFormsApplication1
                     }
                     else
                     {
-                        Decimal addition = remainder * percentages[i];
+                        Decimal addition = total * percentages[i];
                         c.savData.currentValue += addition;
                         remainder -= addition;
                         c.refreshViews();
